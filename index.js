@@ -71,9 +71,9 @@ app.post('/search', async (req, res) => {
     const response = await axios.get(
       ADVICE_API_URL + '/advice/search/' + query
     );
-    console.log(response.data);
-
-    // res.render('')
+    res.render('listOfAdvice', {
+      content: response.data,
+    });
   } catch (error) {
     res.status(505).render('index', {
       content: 'Uh oh, Something Broke...',

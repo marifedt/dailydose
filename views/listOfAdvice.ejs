@@ -1,0 +1,29 @@
+<%- include('partials/header.ejs') %>
+
+
+    <div class="container my-20 w-1/2 flex flex-col items-center justify-center">
+        <% if(locals.content.message) { %>
+            <div class="card bg-primary text-primary-content w-full">
+                <div class="card-body">
+                    <h2 class="card-title">
+                        <%= content.message.type %>
+                    </h2>
+                    <p>
+                        <%= content.message.text %>
+                    </p>
+                </div>
+            </div>
+            <% } else if(locals.content.slips) { %>
+                <h1 class="text-xl lg:text-3xl">Keyword: <span
+                        class="text-2xl lg:text-4xl font-bold text-accent uppercase">
+                        <%= content.query %>
+                    </span></h1>
+                <% content.slips.forEach((element, idx)=> { %>
+                    <%- include ('partials/advice.ejs', {element, idx}) %>
+
+                        <% }) %>
+                            <% } %>
+    </div>
+
+
+    <%- include('partials/footer.ejs') %>
