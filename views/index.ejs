@@ -16,17 +16,7 @@
                 <div class="flex-1">
                     <h1 class="text-3xl font-bold">DailyDose</h1>
                 </div>
-                <div class="flex gap-4 items-center">
-
-                    <div class="join">
-                        <label class="input input-bordered flex items-center join-item">
-                            <input id="searchQuery" type="text" class="grow" placeholder="Search for an advice" />
-                            <!-- <kbd class="kbd kbd-sm">Shift</kbd>
-                            <kbd class="kbd kbd-sm">K</kbd> -->
-                        </label>
-                        <button class="btn join-item rounded-r-full">Search</button>
-                    </div>
-
+                <div class="flex-none">
                     <label class="flex cursor-pointer gap-2">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -50,22 +40,31 @@
         <div class="hero bg-base-200 mt-10">
             <div class="hero-content flex-col lg:flex-row w-full">
                 <img src="<%= photo %>" class="max-w-sm rounded-lg shadow-2xl" />
-                <div class="m-12 lg:w-2/5 flex-1 ">
-                    <h1 class="text-5xl font-bold">
-                        "<%= JSON.parse(JSON.stringify(content.slip.advice)) %>"
+                <div class="m-12 lg:w-2/5 flex-1">
+                    <h1 class=" text-3xl lg:text-5xl font-bold text-center lg:text-start lg:leading-snug ">
+                        "<%= JSON.parse(JSON.stringify(content)) %>"
                     </h1>
 
                 </div>
             </div>
         </div>
 
-        <div class="bg-base-200 flex items-center justify-center my-16 gap-5">
-            <form action="/new-advice" method="post">
-                <button type="submit" class="btn btn-accent btn-wide btn-lg">Get a new
-                    advice!</button>
-            </form>
-        </div>
-
+        <% if(content!=='Page Not Found' && content !=='Uh oh, Something Broke...' ) { %>
+            <div class="bg-base-200 flex items-center justify-center my-16 gap-5">
+                <form id="myForm" method="post" class="flex flex-col gap-5 items-center md:flex-row">
+                    <button formaction="/new-advice" type="submit" class="btn btn-accent btn-wide lg:btn-lg">Get a new
+                        advice!</button>
+                    <div class="join">
+                        <div class="input lg:input-lg input-bordered flex items-center join-item ">
+                            <input type="text" id="queryInput" name="query"
+                                class="grow bg-accent rounded-box outline-none" placeholder="Search for an advice">
+                        </div>
+                        <button type="submit" class="btn lg:btn-lg btn-accent join-item rounded-r-full "
+                            formaction="/search">Search</button>
+                    </div>
+                </form>
+            </div>
+            <% } %>
     </main>
 
     <!-- Footer -->
